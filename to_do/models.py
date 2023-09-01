@@ -17,5 +17,5 @@ class Task(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     placed_date = models.DateField(auto_now_add=True)
     dead_line = models.DateField()
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    assigned_to = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    task_assigned_to = models.ForeignKey(User, on_delete=models.CASCADE)
