@@ -1,0 +1,47 @@
+{% extends 'Layouts/base.html' %}
+
+    {% block content %}
+    <form action={% url 'singup' %} method="POST">
+        {% csrf_token %}
+
+        <div>
+            <label for="Nombre">Nombre</label>
+            <input type="text" name="Nombre">
+        </div>
+
+        <div>
+            <label for="Apellido">Apellido</label>
+            <input type="text" name="Apellido">
+        </div>
+
+        <div>
+            <label for="Correo">Correo</label>
+            <input type="email" name="Correo">
+        </div>
+
+        <div>
+            <label for="password1">Contraseña</label>
+            <input type="password" name="password1">
+        </div>
+
+        <div>
+            <label for="password2">Confirmar contraseña</label>
+            <input type="password" name="password2">        
+        </div>
+        
+        
+
+        
+        
+
+        
+        
+
+        
+
+
+        <button >Crear Usuario</button>
+    </form>    
+    
+
+{% endblock  %}

@@ -1,0 +1,22 @@
+{% extends 'Layouts/base.html' %}
+
+{% block content %} 
+
+<form action={% url 'sigin' %} method = "POST">
+    {% csrf_token %}
+    <h1>{{error}}</h1>
+    <div>
+        <label for="Correo">Correo</label>
+        <input type="text" name="Correo">
+    </div>
+    <div>
+        <label for="Contraseña">Contraseña</label>
+        <input type="password" name= "Contraseña">
+    </div>
+    <button>Enviar</button>
+   
+
+
+</form>
+
+{% endblock %}
