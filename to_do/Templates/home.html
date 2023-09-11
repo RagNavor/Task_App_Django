@@ -2,27 +2,16 @@
 
 {% block content %}
 
-<h1>Bienvenido {{user}}</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-    <h2>Crear grupo</h2>
-    <label for="nombre_grupo">¿Cual sera el nombre del equipo de trabajo?</label>
-    <input type="text"name="nombre_grupo">
-    <button>Crear</button>
-</form>
+<h1>Bienvenido {{user.first_name}}</h1>
+<div>
 
-<form action=""method= "POST">
-    {% csrf_token %}
-    <h2>Crear Proyecto</h2>
-    <label for="nombre_proyecto">¿Cual sera el nombre del equipo de trabajo?</label>
-    <input type="text"name="nombre_proyecto">
-    <button>Crear</button>
-</form>
-
-<h3>Equipos creados</h3>
+    <h3>Crear nuevo proyecto</h3>
+    <a href={% url 'project' %}>Crear</a>
+</div>
 
 <h3>Tus proyectos en desarrollo</h3>
 
+{% include 'Layouts/card_resume_project.html' %}
 
 
 {% endblock %}

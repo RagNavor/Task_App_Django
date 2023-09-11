@@ -14,7 +14,7 @@
 pyvenv.cfg
 .venv
 pip-selfcheck.json
-
+DER.pptm
 db.sqlite3
 .pycache
 __pycache__/

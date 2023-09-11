@@ -1,0 +1,28 @@
+
+{% block card_resume_project %}
+    
+   
+{% if projects_tasks < 1 %}
+<p>Aun no haz creado ningun proyecto<p>
+<a href={% url 'project' %}>Crea tu primer projecto haciendo click aqui</a>
+{% else %}
+
+{% for project_tasks in projects_tasks %}
+    <div class="card w-50" >
+        <div class="card-header">
+            <h2>{{project_tasks.0}}</h2>
+          </div>
+        <div class="card-body">
+            <h4 class="card-subtitle ">Descripcion</h4>
+            <p class="card-text">{{project_tasks.0.description}}</p>
+            <h4>Fecha de entrega</h4>
+            <p>{{project_tasks.0.dead_line}}</p>
+            <h4>Tareas completadas</h4>
+            <p>{{project_tasks.2|length}}/{{project_tasks.1|length}}</p>
+            <a href={% url 'detail_project' id=project_tasks.0.pk %} class="btn btn-primary">Ver detalles</a>
+        </div>
+  </div>
+
+{% endfor %}
+{% endif %}
+{% endblock  %}

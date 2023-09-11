@@ -1,0 +1,23 @@
+{% extends 'Layouts/base.html' %}
+
+
+{% block content %}
+
+
+{% for team in teams %}
+    <p>Equipo</p>
+    <p>{{team}}</p>
+    <p>Miembros</p>
+    {% for member in members %}
+    <p>{{member}}</p>
+    {% endfor %}
+    
+{{users}}
+{% endfor %}
+
+
+
+
+
+
+{% endblock %}

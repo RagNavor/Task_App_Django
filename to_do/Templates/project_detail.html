@@ -1,0 +1,48 @@
+{% extends 'Layouts/base.html' %}
+
+
+
+{% block content %}
+
+    <h1>Detalles del proyecto {{project}}</h1>
+
+    <h2>Descrpcion del proyecto</h2>
+    <p>{{project.description}}</p>
+
+    <h2>Fecha de entrega</h2>
+    <p>{{project.dead_line}}</p>
+
+    <h2>Estado del proyecto</h2>
+    <p>{{project.estado}}</p>
+
+
+<div>
+    <h2>Tareas del proyecto</h2>
+    
+{% include 'Layouts/card_task.html' %}
+   
+    <form action={% url 'create_task' id=project.id %} method="post">
+        {% csrf_token %}
+        <h2>Crear tarea</h2>
+        <label for="Nombre">Nombre de la tarea</label>
+        <input type="text" name="Nombre">
+
+        <label for="descripcion">Descripcion de la tarea</label>
+        <input type="text" name = 'descripcion'>
+
+        <label for="Fecha_de_culminacion"> Fecha de culminacion</label>
+        <input type="date" name = 'Fecha_de_culminacion' min={{dead_line_min}}>
+
+        <button>Crear</button>
+
+    </form>
+    
+
+</div>
+
+
+
+
+
+
+{% endblock %}

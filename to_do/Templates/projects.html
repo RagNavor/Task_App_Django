@@ -1,0 +1,50 @@
+{% extends 'Layouts/base.html' %}
+{% block content %}
+
+<form action={% url 'create_project' %} method= "POST">
+    {% csrf_token %}
+    {{error}}
+    <h2>Crear Proyecto</h2>
+    
+    <label for="nombre_proyecto">¿Cual sera el nombre del proyecto?</label>
+    <input type="text"name="nombre_proyecto">
+    <label for="descrpcion_proyecto">Añade una descripcion del proyecto</label>
+    <textarea type="text_area" name= "descrpcion_proyecto"></textarea>
+    <label for="entrega_proyecto">¿Cual sera la fecha limite de entrega?</label>
+    <input type="date" min = {{dead_line_min}} name= "entrega_proyecto">
+    <p>Creado por {{user}}</p>
+    <button>Crear</button>
+
+</form>
+
+{% include 'Layouts/card_resume_project_by_state.html' %}
+
+{% if  projects_in_development|length   < 1 %}
+
+    <p>Aun no tienes Proyectos en desarrollo </p>
+{% else %}
+    {% for project in projects_in_development %}
+    <div>
+       
+            
+            
+    </div>
+
+    {% endfor %}
+{% endif %}
+
+<h2>Proyectos completados</h2>
+{% if  projects_completed|length   < 1 %}
+
+    <p>Aun no tienes Proyectos completados</p>
+
+{% endif %}
+<h2>Proyectos descartados</h2>
+{% if projects_discarded|length   < 1 %}
+
+    <p>Aun no tienes Proyectos descartados</p>
+
+
+{% endif %}
+
+{% endblock  %}

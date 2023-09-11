@@ -1,9 +1,10 @@
 {% extends 'Layouts/base.html' %}
 
     {% block content %}
-    <form action={% url 'singup' %} method="POST">
+    <form action='' method="POST">
+        #{% url 'singup' %}
         {% csrf_token %}
-
+        {{error}}
         <div>
             <label for="Nombre">Nombre</label>
             <input type="text" name="Nombre">

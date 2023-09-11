@@ -1,20 +1,28 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 # Create your models here.
+
+
+
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
     placed_date = models.DateField(auto_now_add=True)
     dead_line =models.DateField()
-    group = models.BooleanField(default=False)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=13, default='En desarrollo')
+    created_by_user_id  = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self) -> str:
+        return self.name
     
 
 class Task(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
-    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    project_id = models.ForeignKey(Project,on_delete=models.CASCADE)
     placed_date = models.DateField(auto_now_add=True)
     dead_line = models.DateField()
-    task_assigned_to = models.ForeignKey(User, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=13, default='En desarrollo')
+    def __str__(self):
+        return self.name

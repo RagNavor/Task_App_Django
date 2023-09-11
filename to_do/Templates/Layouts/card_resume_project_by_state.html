@@ -1,0 +1,47 @@
+
+{% block card_resume_project_by_state %}
+    
+   
+{% if projects_in_development < 1 and projects_completed < 1 and  projects_discarded < 1 %}
+<p>Aun no haz creado ningun proyecto<p>
+  <form action={% url 'create_project' %} method= "POST">
+    {% csrf_token %}
+    {{error}}
+    <h2>Crear Proyecto</h2>
+    
+    <label for="nombre_proyecto">¿Cual sera el nombre del proyecto?</label>
+    <input type="text"name="nombre_proyecto">
+    <label for="descrpcion_proyecto">Añade una descripcion del proyecto</label>
+    <textarea type="text_area" name= "descrpcion_proyecto"></textarea>
+    <label for="entrega_proyecto">¿Cual sera la fecha limite de entrega?</label>
+    <input type="date" min = {{dead_line_min}} name= "entrega_proyecto">
+    <p>Creado por {{user}}</p>
+    <button>Crear</button>
+
+</form>
+{% else %}
+<h2>Proyectos en desarrollo</h2>
+{% if projects_in_development < 1 %} 
+<p>No tienes proyectos en desarrollo</p>
+{% else %}
+
+{% for project_in_development in projects_in_development %}
+    <div class="card w-50" >
+        <div class="card-header">
+            <h2>{{project_in_development.0}}</h2>
+          </div>
+        <div class="card-body">
+            <h4 class="card-subtitle ">Descripcion</h4>
+            <p class="card-text">{{project_in_development.0.description}}</p>
+            <h4>Fecha de entrega</h4>
+            <p>{{project_in_development.0.dead_line}}</p>
+            <h4>Tareas completadas</h4>
+            <p>{{project_in_development.2|length}}/{{project_in_development.1|length}}</p>
+            <a href={% url 'detail_project' id=project_in_development.0.pk %} class="btn btn-primary">Ver detalles</a>
+        </div>
+  </div>
+{% endfor %}
+{% endif %}
+
+{% endif %}
+{% endblock card_resume_project_by_state %}
